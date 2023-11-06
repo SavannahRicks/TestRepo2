@@ -1,0 +1,21 @@
+{
+  "name": "threed-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0",
+    "vite-svg-loader": "^4.0.0"
+  },
+  "dependencies": {
+    "gh-pages": "^6.0.0",
+    "three": "^0.157.0"
+  }
+}
