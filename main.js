@@ -7,29 +7,23 @@ function main() {
     //scene set up
     const canvas = document.querySelector( '#c' );
     const renderer = new THREE.WebGLRenderer( { antialias: true, canvas } );
+    const scene = new THREE.Scene();
 
     const fov = 75;
     const aspect = 3000/1500; // the canvas default
     const near = 0.1;
     const far = 1000;
     const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-    camera.position.z = 4;
-    camera.position.x = 1;
-    camera.position.y = -1;
+    camera.position.z = 5;
+    camera.position.x = 0;
+    camera.position.y = 0;
 
-    const scene = new THREE.Scene();
+
     const spaceTexture = new THREE.TextureLoader().load('images/night_sky.jpg')
 
     scene.background = spaceTexture;
 
-    //lights!!
 
-    const color = 0xFFFFFF;
-    const intensity = 10;
-    const light = new THREE.DirectionalLight( color, intensity );
-
-    light.position.set(  7, 2, 9 );
-    scene.add( light );
 
 
 
@@ -57,14 +51,21 @@ function main() {
 
 
     //2nd sphere
-    const spGeometry = new THREE.SphereGeometry( 1, 1, 1 );
-    const spMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-    const spMesh = new THREE.Mesh( spGeometry, spMaterial );
-    scene.add( spMesh );
+    // const spGeometry = new THREE.SphereGeometry( 1, 1, 1 );
+    // const spMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+    // const spMesh = new THREE.Mesh( spGeometry, spMaterial );
+    // scene.add( spMesh );
 
 
 
+    //lights!!
 
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight( color, intensity );
+
+    light.position.set(  7, 2, 9 );
+    scene.add( light );
 
 
 //renderer call
@@ -93,7 +94,7 @@ function main() {
 
 
 
-    function render(time) {
+    function animate(time) {
         time *= 0.0005;  // convert time to seconds
 
         if (resizeRendererToDisplaySize(renderer)) {
@@ -107,8 +108,8 @@ function main() {
         cube.rotation.y = time;
         smileMesh.rotation.y = time;
         smileMesh.rotation.x = time;
-        spMesh.rotation.y = time;
-        spMesh.rotation.x = time;
+        // spMesh.rotation.y = time;
+        // spMesh.rotation.x = time;
         cube.position.z = -5;
         cube.position.x = -5;
         smileMesh.position.z = -5;
@@ -116,9 +117,9 @@ function main() {
 
         renderer.render(scene, camera);
 
-        requestAnimationFrame(render);
+        requestAnimationFrame(animate);
     }
-    requestAnimationFrame(render);
+    requestAnimationFrame(animate);
 
 }
 
